@@ -1,0 +1,27 @@
+
+services:
+  app:
+    image: ghcr.io/deeix-ai/deeix-chat:latest
+
+    ports:
+      - "8080:8080"
+
+    environment:
+      APP_ENV: "prod"
+      HTTP_PORT: "8080"
+
+      PUBLIC_API_BASE_URL: "${CLOADY_PRIMARY_URL}"
+      PUBLIC_WEB_BASE_URL: "${CLOADY_PRIMARY_URL}"
+      CORS_ALLOW_ORIGIN: "${CLOADY_PRIMARY_URL}"
+
+      JWT_SECRET: "${JWT_SECRET}"
+      DATA_ENCRYPTION_KEY: "${DATA_ENCRYPTION_KEY}"
+
+    volumes:
+      - deeix_data:/app/data
+      - deeix_storage:/app/storage
+      - ./deploy/config.yaml:/app/config.yaml:ro
+
+volumes:
+  deeix_data:
+  deeix_storage:
