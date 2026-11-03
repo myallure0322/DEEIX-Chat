@@ -1,0 +1,4 @@
+
+FROM ghcr.io/deeix-ai/deeix-chat:latest
+
+COPY deploy/config.yaml /app/config.yaml
